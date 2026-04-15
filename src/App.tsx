@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Example } from './pages/Example/Example'
-
+import { Hero } from './pages/Hero/Hero'
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Example />} />
+        <Route path="/" element={<Hero />} />
       </Routes>
     </BrowserRouter>
   )
