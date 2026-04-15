@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as *;
 
 *,
 *::before,
@@ -32,12 +32,51 @@ button {
   font-family: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $text-primary-color;
+}
+
+h1 {
+  font-size: 2.5rem; // 40px
+}
+
+h2 {
+  font-size: 2rem; // 32px
+}
+
+h3 {
+  font-size: 1.5rem; // 24px
+}
+
+h4 {
+  font-size: 1.25rem; // 20px
+}
+
+h5 {
+  font-size: 1rem; // 16px
+}
+
+h6 {
+  font-size: 0.875rem; // 14px
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $text-secondary-color;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2rem;
+  min-height: 100vh;
 }
