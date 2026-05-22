@@ -1,0 +1,43 @@
+@use '../../styles/variables.scss' as *;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-sm;
+    width: 100%;
+    border-bottom: 2px solid $primary-soft;
+    padding: 1.6rem 4rem;
+    background-color: $background-color;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+}
+
+.imgLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background-color: $primary-soft;
+    border-radius: 8px;
+    color: $primary-color;
+}
+
+.name span {
+    color: $primary-color;
+}
+
+.sobre {
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        color: $primary-color;
+    }
+}
