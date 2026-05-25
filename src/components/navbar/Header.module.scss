@@ -7,7 +7,7 @@
     gap: $space-sm;
     width: 100%;
     border-bottom: 2px solid $primary-soft;
-    padding: 1.6rem 4rem;
+    padding: 1.4rem 4rem;
     background-color: $background-color;
 }
 
@@ -18,15 +18,19 @@
     gap: $space-sm;
 }
 
-.imgLogo {
+.LogoArea {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    padding: 5px;
     background-color: $primary-soft;
     border-radius: 8px;
     color: $primary-color;
+}
+
+.imgLogo{
+
+    width: 45px;
 }
 
 .name span {
@@ -40,4 +44,15 @@
     &:hover {
         color: $primary-color;
     }
+}
+
+.infoBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    background-color: $primary-soft;
 }

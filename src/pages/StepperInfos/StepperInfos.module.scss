@@ -1,0 +1,137 @@
+@use "../../styles/variables.scss" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 40px 24px;
+}
+
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin-bottom: 48px;
+}
+
+.card {
+  width: 100%;
+  max-width: 900px;
+
+  border: 1px solid rgba(22, 242, 194, 0.15);
+
+  border-radius: 32px;
+
+  padding: 72px 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card h1 {
+  font-size: 64px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.card h1 span {
+  color: #16f2c2;
+}
+
+.card p {
+  margin-top: 20px;
+
+  color: #8c8c8c;
+  font-size: 24px;
+}
+
+/* ========================= */
+/* INPUT */
+/* ========================= */
+
+.select-button {
+  width: 100%;
+  max-width: 540px;
+
+  margin-top: 48px;
+
+  height: 72px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(22, 242, 194, 0.2);
+
+  background: transparent;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #6f6f6f;
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+/* ========================= */
+/* CONTINUE */
+/* ========================= */
+
+.continue-button {
+  width: 100%;
+  max-width: 540px;
+
+  margin-top: 36px;
+
+  height: 72px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: rgba(22, 242, 194, 0.2);
+
+  color: #7f8f8c;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  cursor: pointer;
+}
+
+/* ========================= */
+/* BACK */
+/* ========================= */
+
+.back-button {
+  margin-top: 48px;
+
+  width: 120px;
+  height: 52px;
+
+  border-radius: 14px;
+  border: 1px solid #2f3c3b;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
