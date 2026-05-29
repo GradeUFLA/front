@@ -1,8 +1,26 @@
+$circle: 36px;
+$line: 120px;
+$lineMargin: 24px;
+
+$circleSm: 28px;
+$lineSm: 56px;
+$lineMarginSm: 16px;
+
 .stepperHeader {
   display: flex;
-  justify-content: center;
-
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 48px;
+}
+
+.stepsRow {
+  display: flex;
+  align-items: center;
+}
+
+.labelsRow {
+  display: flex;
+  align-items: flex-start;
 }
 
 .stepWrapper {
@@ -11,31 +29,68 @@
   align-items: center;
 }
 
+.labelWrapper {
+  width: calc($circle + $line + $lineMargin);
+  display: flex;
+  justify-content: center;
+
+  &:first-child {
+    width: calc($circle + $line + $lineMargin);
+    margin-left: calc(-1 * ($line + $lineMargin) / 2);
+  }
+
+  &:last-child {
+    width: calc($circle + $line + $lineMargin);
+    margin-right: calc(-1 * ($line + $lineMargin) / 2);
+  }
+
+  @media (max-width: 480px) {
+    width: calc($circleSm + $lineSm + $lineMarginSm);
+
+    &:first-child {
+      width: calc($circleSm + $lineSm + $lineMarginSm);
+      margin-left: calc(-1 * ($lineSm + $lineMarginSm) / 2);
+    }
+
+    &:last-child {
+      width: calc($circleSm + $lineSm + $lineMarginSm);
+      margin-right: calc(-1 * ($lineSm + $lineMarginSm) / 2);
+    }
+  }
+}
+
 .stepTop {
   display: flex;
   align-items: center;
 }
 
 .stepCircle {
-  width: 36px;
-  height: 36px;
+  width: $circle;
+  height: $circle;
+  flex-shrink: 0;
 
   border-radius: 999px;
 
   background: #2b2b2b;
   color: #8d8d8d;
+  font-size: 14px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   transition: 0.3s;
+
+  @media (max-width: 480px) {
+    width: $circleSm;
+    height: $circleSm;
+    font-size: 12px;
+  }
 }
 
 .active {
   background: #18f2c2;
   color: #041412;
-
   box-shadow: 0 0 20px rgba(24, 242, 194, 0.45);
 }
 
@@ -45,12 +100,18 @@
 }
 
 .stepLine {
-  width: 120px;
+  width: $line;
   height: 1px;
+  flex-shrink: 0;
 
   margin: 0 12px;
 
   background: #343434;
+
+  @media (max-width: 480px) {
+    width: $lineSm;
+    margin: 0 8px;
+  }
 }
 
 .lineCompleted {
@@ -62,6 +123,14 @@
 
   font-size: 14px;
   color: #6f6f6f;
+
+  text-align: center;
+  word-break: break-word;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+    margin-top: 8px;
+  }
 }
 
 .labelActive {

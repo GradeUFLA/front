@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 $font-family: Lexend, sans-serif;   
+$font-family-secondary: public sans, sans-serif;   
 $primary-color: #00FFCC;
 $primary-soft: #00FFCC0D;
 $background-color: #060D0C;
+$background-color-secondary: #0B1816;
+$background-color-terciary: #061411;
+$background-color-disable: #1A3D35;
 $text-primary-color: #F1F5F9;
 $text-secondary-color: #94A3B8;
+$text-placeholder-color: #4A6A60;
+$text-terciary-color: #061411;
 $border-color: #00FFCC33;
+$border-color-secondary: #15362E;
+
 
 /* espaçamentos */
 $space-xs: 4px; // Pequenos ajustes, separação mínima
