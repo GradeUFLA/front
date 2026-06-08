@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .header {
@@ -24,6 +23,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 28px;
+        max-width: 1200px;
+
 }
 
 .card {
@@ -141,4 +142,172 @@
   padding: 12px 24px;
   border-radius: 11px;
   transition: 0.4s;
+}
+
+@media (max-width: 1024px) {
+    .materiasArea {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .container {
+        padding: 32px 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .materiasArea {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .container {
+        padding: 24px 16px;
+        gap: 24px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+
+.card {
+    background-color: $background-color-secondary;
+    border: 1px solid $primary-color;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-weight: 500;
+        font-size: 20.93px;
+        line-height: 32.55px;
+        letter-spacing: -0.51px;
+        margin-bottom: 10px;
+    }
+}
+
+.disciplinaContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.disciplinaContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeDisciplina {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.36px;
+    color: #fff;
+}
+
+.codeDisciplina {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.17px;
+    color: #6A7282;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.hiddenCheckbox {
+    display: none;
+    flex-shrink: 0;
+}
+
+.customCheckbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #4A5565;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.hiddenCheckbox:checked + .customCheckbox {
+    background: $primary-color;
+    border-color: $primary-color;
+}
+
+.hiddenCheckbox:checked + .customCheckbox::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Botões responsivos */
+.BtnVoltar {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 100;
+
+    color: #fff;
+    border: 1px solid $border-color-terciary;
+
+    font-weight: 400;
+    padding: 12px 24px;
+    border-radius: 11px;
+}
+
+.continueBtn {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+
+    background-color: $primary-color;
+    color: $text-terciary-color;
+    border: none;
+
+    padding: 12px 24px;
+    border-radius: 11px;
+    transition: 0.4s;
+}
+
+/* Ajustes mobile pros botões */
+@media (max-width: 600px) {
+    .BtnVoltar,
+    .continueBtn {
+        position: fixed;
+        bottom: 16px;
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+
+    .BtnVoltar {
+        left: 16px;
+    }
+
+    .continueBtn {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
