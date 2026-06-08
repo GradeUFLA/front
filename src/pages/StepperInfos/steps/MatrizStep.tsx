@@ -3,6 +3,14 @@ import { getCourseMatrizes } from "../../../services/cursos.service";
 import styles from "../StepperInfos.module.scss";
 import { CustomSelect } from "../../../components/customSelect/CustomSelect";
 
+type Matriz = {
+  id: number;
+  cursoId: number;
+  codigo: string;
+  ano: number;
+  ativa: boolean;
+};
+
 type MatrizStepProps = {
   courseId: string;
   value: string;
@@ -10,7 +18,7 @@ type MatrizStepProps = {
 };
 
 export function MatrizStep({ courseId, value, onChange }: MatrizStepProps) {
-  const [matrizes, setMatrizes] = useState<string[]>([]);
+  const [matrizes, setMatrizes] = useState<Matriz[]>([]);
 
   useEffect(() => {
     async function fetchMatrizes() {
@@ -39,9 +47,9 @@ export function MatrizStep({ courseId, value, onChange }: MatrizStepProps) {
       <p>Selecione a matriz curricular que você está cursando</p>
 
       <CustomSelect
-        options={matrizes.map((codigo) => ({
-          label: `Matriz ${codigo}`,
-          value: codigo,
+        options={matrizes.map((matriz) => ({
+          label: `Matriz ${matriz.codigo}`,
+          value: String(matriz.id),
         }))}
         value={value}
         onChange={onChange}

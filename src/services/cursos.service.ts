@@ -7,14 +7,24 @@ export type Course = {
   creditosTotais: number;
 }
 
+export type Matriz = {
+  id: number;
+  cursoId: number;
+  codigo: string;
+  ano: number;
+  ativa: boolean;
+};
+
 export async function getCourses(): Promise<Course[]> {
   const response = await api.get<Course[]>("/api/v1/public/cursos");
 
   return response.data;
 }
 
-export async function getCourseMatrizes(courseId: string): Promise<string[]> {
-  const response = await api.get<string[]>(
+export async function getCourseMatrizes(
+  courseId: string
+): Promise<Matriz[]> {
+  const response = await api.get<Matriz[]>(
     `/api/v1/public/cursos/matrizes/${Number(courseId)}`
   );
 

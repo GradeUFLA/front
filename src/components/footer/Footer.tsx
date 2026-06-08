@@ -1,9 +1,14 @@
 import styles from "./Footer.module.scss";
-import CountUp from '../reactbits/effects/CountUp/CountUp';
-import { Dot } from 'lucide-react';
+import CountUp from "../reactbits/effects/CountUp/CountUp";
+import { Dot } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export const Footer = () => {
-  return (
+  const location = useLocation();
+
+  const showCounters = location.pathname === "/";
+
+  return showCounters ? (
     <div className={styles.footer}>
       <div className={styles.copyright}>
         <p>
@@ -28,6 +33,7 @@ export const Footer = () => {
             +
           </span>
         </p>
+
         <p>
           Grades criadas{" "}
           <span>
@@ -45,5 +51,5 @@ export const Footer = () => {
         </p>
       </div>
     </div>
-  );
+  ): null;
 };

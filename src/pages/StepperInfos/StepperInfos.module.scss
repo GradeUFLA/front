@@ -1,7 +1,6 @@
 @use "../../styles/variables.scss" as *;
 
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
@@ -104,8 +103,16 @@
 .BtnVoltar {
   position: absolute;
 
-  left: 10px;
-  bottom: 0px;
+  left: 20px;
+  bottom: 20px;
 
   z-index: 100;
+
+  color: #fff;
+  border: 1px solid $border-color-terciary;
+
+  font-weight: 400;
+  padding: 12px 24px;
+  border-radius: 11px;
 }
+

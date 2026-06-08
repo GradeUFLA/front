@@ -1,11 +1,15 @@
 import styles from "./Header.module.scss";
 import LogoGrade from "../../assets/logo-grade.svg";
 import { Info } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
+
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={() => navigate("/")}>
         <span className={styles.LogoArea}>
           <img
             className={styles.imgLogo}

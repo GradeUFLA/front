@@ -1,0 +1,144 @@
+@use "../../styles/variables.scss" as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px;
+    width: 100%;
+    height: 100%;
+    gap: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.materiasArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+}
+
+.card {
+    background-color: $background-color-secondary;
+    border: 1px solid $primary-color;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-weight: 500;
+        font-size: 20.93px;
+        line-height: 32.55px;
+        letter-spacing: -0.51px;
+        margin-bottom: 10px;
+    }
+}
+
+.disciplinaContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.disciplinaContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeDisciplina {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.36px;
+    color: #fff;
+}
+
+.codeDisciplina {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.17px;
+    color: #6A7282;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.hiddenCheckbox {
+    display: none;
+    flex-shrink: 0;
+
+}
+
+.customCheckbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #4A5565;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.hiddenCheckbox:checked+.customCheckbox {
+    background: $primary-color;
+    border-color: $primary-color;
+}
+
+.hiddenCheckbox:checked+.customCheckbox::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.BtnVoltar {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    z-index: 100;
+
+    color: #fff;
+    border: 1px solid $border-color-terciary;
+
+    font-weight: 400;
+    padding: 12px 24px;
+    border-radius: 11px;
+}
+
+.continueBtn {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%); /* só X */
+
+  background-color: $primary-color;
+  color: $text-terciary-color;
+  border: none;
+
+  padding: 12px 24px;
+  border-radius: 11px;
+  transition: 0.4s;
+}

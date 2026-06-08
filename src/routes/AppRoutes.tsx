@@ -13,6 +13,8 @@ import { Layout } from "../components/layout/Layout";
 
 import { Hero } from "../pages/Hero/Hero";
 import { StepperInfos } from "../pages/StepperInfos/StepperInfos";
+import { MateriasConcluidas } from "../pages/MateriasConcluidas/MateriasConcluidas";
+import { Grade } from "../pages/Grade/Grade";
 
 export const AppRoutes = () => {
   const location = useLocation();
@@ -45,6 +47,24 @@ export const AppRoutes = () => {
             }
           />
 
+          <Route
+            path="/materias-concluidas"
+            element={
+              <PageTransition>
+                <MateriasConcluidas />
+              </PageTransition>
+            }
+          />
+
+          <Route
+            path="/grade-curricular"
+            element={
+              <PageTransition>
+                <Grade />
+              </PageTransition>
+            }
+          />
+
         </Route>
 
       </Routes>
@@ -56,28 +76,11 @@ export const AppRoutes = () => {
 const PageTransition = ({ children }) => {
   return (
     <motion.div
-      initial={{
-        y: 60,
-        opacity: 0,
-        filter: "blur(5px)",
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        filter: "blur(0px)",
-      }}
-      exit={{
-        y: -60,
-        opacity: 0,
-        filter: "blur(5px)",
-      }}
-      transition={{
-        duration: 0.15,
-        ease: "easeInOut",
-      }}
-      style={{
-        width: "100%",
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      style={{ width: "100%" }}
     >
       {children}
     </motion.div>

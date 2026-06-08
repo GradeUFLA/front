@@ -83,7 +83,13 @@ export function StepperInfos() {
 
   function handleContinue() {
     if (currentStep === steps.length - 1) {
-      navigate("/sua-rota-final"); // troca aqui
+      navigate("/materias-concluidas", {
+        state: {
+          courseId: formData.course,
+          matrizId: formData.matriz,
+          semestre: formData.semestre,
+        },
+      });
       return;
     }
 
