@@ -5,9 +5,13 @@ import styles from "./Layout.module.scss";
 import Particles from "../reactbits/background/Particles/Particles";
 
 import { Header } from "../navbar/Header";
+import { useLocation } from "react-router-dom";
 import { Footer } from "../footer/Footer";
 
 export const Layout = () => {
+  const location = useLocation();
+
+  const isGradePage = location.pathname === "/grade-curricular";
 
   return (
     <div className={styles.container}>
@@ -24,7 +28,7 @@ export const Layout = () => {
         pixelRatio={1}
       />
 
-      <Header />
+      {!isGradePage && <Header />}
 
       <main className={styles.content}>
         <Outlet />

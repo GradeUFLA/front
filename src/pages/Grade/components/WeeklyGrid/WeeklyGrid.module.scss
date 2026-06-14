@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    80px repeat(6, 1fr);
+
+  grid-template-rows:
+    60px repeat(17, 60px);
+
+  gap: 10px;
+
+  background: #1A3D352B;
+
+  border-radius: 32px;
+
+  padding: 20px;
+}
+
+.gradeButton {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.dayHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeCell {
+  display: flex;
+  align-items: center;
+}
+
+.cell {
+  border: 1px solid #00FFCC0D;
+  border-radius: 5px;
+}
