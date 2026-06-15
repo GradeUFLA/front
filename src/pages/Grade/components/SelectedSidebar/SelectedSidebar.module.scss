@@ -1,90 +1,94 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background-color: #00FFCC05;
-    padding: 18px;
-    height: fit-content;
-    border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #00ffcc05;
+  padding: 18px;
+  height: fit-content;
+  border-radius: 15px;
 
-    h3 {
-        font-weight: 700;
-        font-size: 14.39px;
-        line-height: 17.99px;
-    }
+  h3 {
+    font-weight: 700;
+    font-size: 14.39px;
+    line-height: 17.99px;
+  }
 
-    span{
-        font-weight: 300;
-        font-size: 14.39px;
-        line-height: 17.99px;
-        color: #a0a0a0;
-    }
+  span {
+    font-weight: 300;
+    font-size: 14.39px;
+    line-height: 17.99px;
+    color: #a0a0a0;
+  }
 }
 
 .card {
-    background: #1A9C8515;
+  background: #1a9c8515;
 
-    border: 0.9px solid #19AA8E40;
-    border-radius: 8px;
+  border: 0.9px solid #19aa8e40;
+  border-radius: 8px;
 
-    padding: 14px;
+  padding: 14px;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .codeArea {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
+  span {
     font-size: 10px;
-    color: #01F0B5;
+    color: #01f0b5;
     font-weight: 700;
+  }
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 
-    border-radius: 2px;
+  border-radius: 2px;
 
-    background: #01F0B5;
+  background: #01f0b5;
 }
 
 .remove {
-    border: none;
-    background: transparent;
+  border: none;
+  background: transparent;
 
-    color: #ff0000;
+  color: #ff0000;
 
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .card h4 {
-    color: white;
+  color: white;
 
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .card p {
-    color: rgba(255, 255, 255, .65);
-    font-size: 9px;
-    font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  font-weight: 300;
 }
 
 .schedule {
-    margin-top: 4px;
+  margin-top: 4px;
 
-    display: flex;
-    gap: 6px;
+  display: flex;
+  gap: 6px;
 
-    color: rgba(255, 255, 255, .65);
+  span {
+    color: rgba(255, 255, 255, 0.65);
     font-size: 9px;
     font-weight: 300;
+  }
 }

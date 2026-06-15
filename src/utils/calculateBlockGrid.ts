@@ -11,7 +11,6 @@ const dayMap: Record<string, number> = {
 
 function hourToGridStart(time: string) {
   const [hour] = time.split(":");
-
   return Number(hour);
 }
 
@@ -27,22 +26,30 @@ function hourToGridEnd(time: string) {
 
 export function calculateBlockGrid(
   dia: string,
-  horaInicio: string,
-  horaFim: string
+  horaInicio: string | null,
+  horaFim: string | null
 ) {
+  if (!horaInicio || !horaFim) {
+    return null;
+  }
+
   const inicio =
-    hourToGridStart(horaInicio) -
-    START_HOUR +
-    2;
+    hourToGridStart(horaInicio) - START_HOUR + 2;
 
   const fim =
-    hourToGridEnd(horaFim) -
-    START_HOUR +
-    2;
+    hourToGridEnd(horaFim) - START_HOUR + 2;
 
   return {
     gridColumn: dayMap[dia],
     gridRowStart: inicio,
     gridRowEnd: fim,
+  };
+}
+
+export function calculateANPGrid(slotIndex: number) {
+  return {
+    gridColumn: 7, // sábado
+    gridRowStart: slotIndex + 2,
+    gridRowEnd: slotIndex + 3,
   };
 }

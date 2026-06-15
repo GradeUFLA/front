@@ -52,6 +52,7 @@ export type CursoGrade = {
 export type GradeResponse = {
   curso: CursoGrade;
   semestres: SemestreGrade[];
+  eletivas: DisciplinaGrade[];
 };
 
 export type MontarGradeRequest = {

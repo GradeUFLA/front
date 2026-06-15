@@ -4,69 +4,61 @@ import type { DisciplinaGrade } from "../../../../../../types/grade";
 import { useDraggable } from "@dnd-kit/core";
 
 type Props = {
-    disciplina: DisciplinaGrade;
+  disciplina: DisciplinaGrade;
 };
 
 export function SubjectCard({ disciplina }: Props) {
-    const primeiraTurma = disciplina.turmas[0];
+  const primeiraTurma = disciplina.turmas[0];
 
-    const { setNodeRef, listeners, attributes, isDragging } =
-        useDraggable({
-            id: disciplina.disciplinaCursoId,
-            data: disciplina,
-        });
+  const { setNodeRef, listeners, attributes, isDragging } = useDraggable({
+    id: disciplina.disciplinaCursoId,
+    data: disciplina,
+  });
 
-    const horariosTexto =
-        primeiraTurma?.horarios
-            .map((horario) => {
-                const diaMap: Record<string, string> = {
-                    SEGUNDA: "Seg",
-                    TERCA: "Ter",
-                    QUARTA: "Qua",
-                    QUINTA: "Qui",
-                    SEXTA: "Sex",
-                    SABADO: "Sáb",
-                };
+  const horariosTexto = primeiraTurma?.horarios
+    .map((horario) => {
+      const diaMap: Record<string, string> = {
+        SEGUNDA: "Seg",
+        TERCA: "Ter",
+        QUARTA: "Qua",
+        QUINTA: "Qui",
+        SEXTA: "Sex",
+        SABADO: "Sáb",
+        ANP: "ANP",
+      };
 
-                return `${diaMap[horario.dia]} ${horario.horaInicio.slice(0, 2)}h`;
-            })
-            .join(", ");
+      if (!horario.horaInicio) {
+        return diaMap[horario.dia] ?? horario.dia;
+      }
 
-    return (
-        <div
-            ref={setNodeRef}
-            {...listeners}
-            {...attributes}
-            className={`${styles.container} ${isDragging ? styles.dragging : ""
-                }`}
-        >
-            <div className={styles.header}>
-                <span className={styles.codigo}>
-                    {disciplina.codigo}
-                </span>
+      return `${diaMap[horario.dia] ?? horario.dia} ${horario.horaInicio.slice(0, 2)}h`;
+    })
+    .join(", ");
 
-                <span className={styles.creditos}>
-                    {disciplina.creditos} créditos
-                </span>
-            </div>
+  return (
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      className={`${styles.container} ${isDragging ? styles.dragging : ""}`}
+    >
+      <div className={styles.header}>
+        <span className={styles.codigo}>{disciplina.codigo}</span>
 
-            <h4 className={styles.nome}>
-                {disciplina.nome}
-            </h4>
+        <span className={styles.creditos}>{disciplina.creditos} créditos</span>
+      </div>
 
-            <span className={styles.horarios}>
-                {horariosTexto}
-            </span>
+      <h4 className={styles.nome}>{disciplina.nome}</h4>
 
-            <div className={styles.footer}>
-                <span className={styles.professor}>
-                    Prof. {primeiraTurma?.professor}
-                </span>
+      <span className={styles.horarios}>{horariosTexto}</span>
 
-                <span className={styles.turmas}>
-                    {disciplina.turmas.length} turmas
-                </span>
-            </div>
-        </div>
-    );
+      <div className={styles.footer}>
+        <span className={styles.professor}>
+          Prof. {primeiraTurma?.professor}
+        </span>
+
+        <span className={styles.turmas}>{disciplina.turmas.length} turmas</span>
+      </div>
+    </div>
+  );
 }

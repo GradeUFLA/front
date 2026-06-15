@@ -4,16 +4,16 @@
     display: grid;
 
     grid-template-columns:
-        60px repeat(6, 1fr);
+        50px repeat(6, 1fr);
 
     grid-template-rows:
-        60px repeat(17, 60px);
+        50px repeat(17, 45px);
 
     gap: 8px;
 
     background: #1A3D352B;
 
-    border-radius: 32px;
+    border-radius: 29px;
 
     padding: 20px;
     height: fit-content;
