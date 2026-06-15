@@ -64,3 +64,11 @@
     font-weight: 500;
     font-size: 9px;
 }
+
+.dragging {
+    opacity: 0.6;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    cursor: grabbing;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}

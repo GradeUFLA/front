@@ -5,6 +5,9 @@ import { useGrade } from "../../../../context/GradeContext";
 import { SubjectBlock } from "./components/SubjectBlock/SubjectBlock";
 import { calculateBlockGrid } from "../../../../utils/calculateBlockGrid";
 import React from "react";
+import { hasScheduleConflict } from "../../../../utils/hasScheduleConflict";
+import { findConflictingSubjects } from "../../../../utils/findConflictingSubjects";
+import { useDroppable } from "@dnd-kit/core";
 
 const dias = [
     "Segunda",
@@ -24,7 +27,16 @@ export function WeeklyGrid() {
     const {
         gradeAtual,
         trocarGrade,
+
         gradeSelecionada,
+
+        previewDisciplina,
+        setPreviewDisciplina,
+
+        pendingSubject,
+        setPendingSubject,
+
+        adicionarMateria,
     } = useGrade();
 
     return (
@@ -67,13 +79,10 @@ export function WeeklyGrid() {
                     </div>
 
                     {dias.map((_, dayIndex) => (
-                        <div
-                            key={`${hora}-${dayIndex}`}
-                            className={styles.cell}
-                            style={{
-                                gridColumn: dayIndex + 2,
-                                gridRow: hourIndex + 2,
-                            }}
+                        <DroppableCell
+                            id={`${dayIndex}-${hourIndex}`}
+                            row={hourIndex + 2}
+                            col={dayIndex + 2}
                         />
                     ))}
                 </React.Fragment>
@@ -85,6 +94,9 @@ export function WeeklyGrid() {
                         key={`${selected.turma.turmaId}-${horario.id}`}
                         codigo={selected.disciplina.codigo}
                         nome={selected.disciplina.nome}
+                        professor={selected.turma.professor}
+                        turmaCodigo={selected.turma.codigo}
+                        sala={horario.sala}
                         {...calculateBlockGrid(
                             horario.dia,
                             horario.horaInicio,
@@ -94,6 +106,105 @@ export function WeeklyGrid() {
                 ))
             )}
 
+            {previewDisciplina?.turmas.map(
+                (turma, turmaIndex) =>
+                    turma.horarios.map((horario) => (
+                        <SubjectBlock
+                            key={`preview-${turma.turmaId}-${horario.id}`}
+
+                            codigo={previewDisciplina.codigo}
+                            nome={previewDisciplina.nome}
+
+                            professor={turma.professor}
+                            sala={horario.sala}
+                            turmaCodigo={turma.codigo}
+
+                            preview
+                            colorIndex={turmaIndex}
+
+                            hasConflict={hasScheduleConflict(
+                                horario,
+                                gradeSelecionada
+                            )}
+
+                            onClick={() => {
+
+                                const novaMateria = {
+                                    disciplina: previewDisciplina,
+                                    turma,
+                                };
+
+                                const conflitos = turma.horarios.flatMap(
+                                    (horario) =>
+                                        findConflictingSubjects(
+                                            horario,
+                                            gradeSelecionada
+                                        )
+                                );
+
+                                const conflitosUnicos = conflitos.filter(
+                                    (materia, index, array) =>
+                                        index ===
+                                        array.findIndex(
+                                            (m) =>
+                                                m.disciplina.disciplinaCursoId ===
+                                                materia.disciplina.disciplinaCursoId
+                                        )
+                                );
+
+                                if (conflitosUnicos.length > 0) {
+
+                                    setPendingSubject({
+                                        materia: novaMateria,
+                                        conflitos: conflitosUnicos,
+                                    });
+
+                                    return;
+                                }
+
+                                adicionarMateria(novaMateria);
+
+                                setPreviewDisciplina(null);
+                            }}
+
+                            {...calculateBlockGrid(
+                                horario.dia,
+                                horario.horaInicio,
+                                horario.horaFim
+                            )}
+                        />
+                    ))
+            )}
+
         </div>
+    );
+}
+
+function DroppableCell({
+    id,
+    row,
+    col,
+}: {
+    id: string;
+    row: number;
+    col: number;
+}) {
+    const { setNodeRef, isOver } = useDroppable({
+        id,
+        data: { row, col },
+    });
+
+    return (
+        <div
+            ref={setNodeRef}
+            className={styles.cell}
+            style={{
+                gridColumn: col,
+                gridRow: row,
+                background: isOver
+                    ? "rgba(0,255,204,0.08)"
+                    : undefined,
+            }}
+        />
     );
 }

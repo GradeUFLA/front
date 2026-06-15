@@ -6,9 +6,12 @@
     justify-content: space-between;
     gap: $space-sm;
     width: 100%;
+    height: 80px;
     border-bottom: 2px solid $primary-soft;
     padding: 1.4rem 4rem;
     background-color: $background-color;
+    position: relative;
+  z-index: 10;
 }
 
 .logo {

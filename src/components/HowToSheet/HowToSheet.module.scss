@@ -1,0 +1,170 @@
+// ─── HowToSheet.module.scss ───────────────────────────────────────────────────
+
+$teal:           #0ED2C8;
+$bg-header:      #060F0E;
+$border:         rgba(255, 255, 255, 0.08);
+$text-primary:   #F1F5F9;
+$text-secondary: #94A3B8;
+$text-muted:     #6B7280;
+$radius-sm:      8px;
+$transition:     0.2s ease;
+
+.body {
+  padding: 16px 24px 32px;
+}
+
+// ── Header row ────────────────────────────────────────────────────────────────
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $teal;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  color: $text-muted;
+  border-radius: 6px;
+  transition: color $transition;
+
+  &:hover      { color: $text-primary; }
+  &:focus-visible { outline: 2px solid $teal; outline-offset: 2px; }
+}
+
+// ── Intro ─────────────────────────────────────────────────────────────────────
+
+.intro {
+  color: $text-secondary;
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+
+  strong { color: $text-primary; }
+}
+
+.accent { color: $teal; }
+
+// ── Section label ─────────────────────────────────────────────────────────────
+
+.sectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: 16px;
+}
+
+// ── Steps ─────────────────────────────────────────────────────────────────────
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+}
+
+.badge {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $teal;
+  color: $bg-header;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepTitle {
+  font-weight: 700;
+  color: $text-primary;
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.stepBody {
+  color: $text-secondary;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+
+  strong { color: $text-primary; }
+}
+
+// ── Warning ───────────────────────────────────────────────────────────────────
+
+.warning {
+  margin-top: 28px;
+  padding: 14px 16px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba(14, 210, 200, 0.2);
+  background: rgba(14, 210, 200, 0.04);
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.6;
+
+  strong { color: $text-primary; }
+}
+
+// ── Developers ────────────────────────────────────────────────────────────────
+
+.devSection {
+  margin-top: 28px;
+}
+
+.devLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-muted;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.devRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: border-color $transition, background $transition;
+
+  &:hover {
+    border-color: rgba(14, 210, 200, 0.25);
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.devName { color: $text-primary; font-weight: 600; font-size: 14px; }
+.devLink { color: $teal; font-size: 13px; }

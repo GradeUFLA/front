@@ -1,0 +1,80 @@
+@use '../../styles/variables.scss' as *;
+
+$teal: #0ED2C8;
+$teal-dim: rgba(14, 210, 200, 0.12);
+$teal-hover: rgba(14, 210, 200, 0.18);
+$bg-header: #060F0E;
+$text-primary: #F1F5F9;
+$radius-sm: 8px;
+$transition: 0.2s ease;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-sm;
+    width: 100%;
+    height: 80px;
+    border-bottom: 2px solid $primary-soft;
+    padding: 1.4rem 4rem;
+    background-color: $background-color;
+    z-index: 1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-sm;
+}
+
+.LogoArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: $primary-soft;
+    border-radius: 8px;
+    color: $primary-color;
+}
+
+.imgLogo{
+
+    width: 45px;
+}
+
+.name span {
+    color: $primary-color;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: $radius-sm;
+  background: $teal-dim;
+  border: 1px solid rgba(14, 210, 200, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $teal;
+  transition: background $transition, border-color $transition;
+
+  &:hover {
+    background: $teal-hover;
+    border-color: rgba(14, 210, 200, 0.4);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $teal;
+    outline-offset: 2px;
+  }
+}

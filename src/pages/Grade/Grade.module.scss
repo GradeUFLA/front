@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    margin: 0 auto;
     gap: 24px;
 }
 
@@ -12,4 +12,138 @@
         250px 1fr 287px;
 
     gap: 24px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    height: 100%;
+}
+
+/* =========================
+   🎯 CARD BASE (SHARED STYLE)
+========================= */
+
+.cardBase {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    border: 1px solid rgba(1, 240, 181, 0.25);
+
+    transition: all 0.2s ease;
+}
+
+/* =========================
+   🟦 SUBJECT CARD (SIDEBAR)
+========================= */
+
+.subjectCard {
+    cursor: grab;
+}
+
+.subjectCard:hover {
+    transform: translateY(-2px);
+    background: rgba(1, 240, 181, 0.05);
+    border-color: rgba(1, 240, 181, 0.4);
+}
+
+.subjectCard.dragging {
+    opacity: 0.6;
+    transform: scale(1.03);
+    cursor: grabbing;
+}
+
+/* =========================
+   🟣 DRAG OVERLAY (PREVIEW)
+========================= */
+
+.dragPreview {
+    width: 260px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+
+    background: #0b0f14;
+
+    border: 1px solid rgba(1, 240, 181, 0.35);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    transform: rotate(2deg);
+    pointer-events: none;
+}
+
+/* =========================
+   🔤 TEXTOS (UNIFICADO)
+========================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.codigo {
+    color: #01f0b5;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.creditos {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.nome {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.horarios {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.professor {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+.turmas {
+    color: #01f0b5;
+    font-weight: 500;
+    font-size: 10px;
+}
+
+/* =========================
+   🎯 GRID FEEDBACK (OPCIONAL UX)
+========================= */
+
+.dropActive {
+    background: rgba(1, 240, 181, 0.05);
+    border: 1px dashed rgba(1, 240, 181, 0.4);
 }

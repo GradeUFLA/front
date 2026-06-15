@@ -1,0 +1,84 @@
+// ─── GoogleAgendaSheet.module.scss ───────────────────────────────────────────
+
+$teal:           #0ED2C8;
+$bg-header:      #060F0E;
+$border:         rgba(255, 255, 255, 0.08);
+$text-primary:   #F1F5F9;
+$text-secondary: #94A3B8;
+$radius-md:      12px;
+$transition:     0.2s ease;
+
+.body {
+  padding: 16px 24px 32px;
+  text-align: center;
+}
+
+.googleIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4285F4, #34A853);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-primary;
+  margin: 0 0 10px;
+}
+
+.desc {
+  color: $text-secondary;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.btnConfirm {
+  width: 100%;
+  padding: 16px;
+  border-radius: $radius-md;
+  border: none;
+  background: $teal;
+  color: $bg-header;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  transition: filter $transition;
+
+  &:hover         { filter: brightness(1.08); }
+  &:focus-visible { outline: 2px solid $teal; outline-offset: 3px; }
+}
+
+.btnCancel {
+  width: 100%;
+  padding: 16px;
+  border-radius: $radius-md;
+  border: 1px solid $border;
+  background: rgba(255, 255, 255, 0.03);
+  color: $text-primary;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color $transition, background $transition;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  &:focus-visible { outline: 2px solid $teal; outline-offset: 2px; }
+}

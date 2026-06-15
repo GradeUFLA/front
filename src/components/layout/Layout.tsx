@@ -1,12 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import styles from "./Layout.module.scss";
-
 import Particles from "../reactbits/background/Particles/Particles";
 
-import { Header } from "../navbar/Header";
-import { useLocation } from "react-router-dom";
+import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";
+import { GradeHeader } from "../GradeHeader/GradeHeader";
 
 export const Layout = () => {
   const location = useLocation();
@@ -28,7 +27,7 @@ export const Layout = () => {
         pixelRatio={1}
       />
 
-      {!isGradePage && <Header />}
+      {isGradePage ? <GradeHeader /> : <Header />}
 
       <main className={styles.content}>
         <Outlet />

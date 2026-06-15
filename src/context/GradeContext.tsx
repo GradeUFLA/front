@@ -5,7 +5,7 @@ import {
     useState,
 } from "react";
 import type { ReactNode } from "react";
-import type { SelectedSubject, GradeResponse } from "../types/grade";
+import type { SelectedSubject, GradeResponse, DisciplinaGrade } from "../types/grade";
 
 
 type GradeNumber = 1 | 2 | 3;
@@ -19,6 +19,12 @@ type GradesState = {
 type GradeContextType = {
     gradeAtual: GradeNumber;
     grades: GradesState;
+
+    previewDisciplina: DisciplinaGrade | null;
+
+    setPreviewDisciplina: (
+        disciplina: DisciplinaGrade | null
+    ) => void;
 
     trocarGrade: () => void;
 
@@ -39,6 +45,22 @@ type GradeContextType = {
     ) => void;
 
     gradeSelecionada: SelectedSubject[];
+
+    pendingSubject: {
+        materia: SelectedSubject;
+        conflitos: SelectedSubject[];
+    } | null;
+
+    setPendingSubject: (
+        subject: {
+            materia: SelectedSubject;
+            conflitos: SelectedSubject[];
+        } | null
+    ) => void;
+
+    removerMaterias: (
+        materias: SelectedSubject[]
+    ) => void;
 };
 
 const GradeContext = createContext<
@@ -65,6 +87,21 @@ export function GradeProvider({
     const [gradeCompleta, setGradeCompleta] =
         useState<GradeResponse | null>(null);
 
+    const [
+        previewDisciplina,
+        setPreviewDisciplina,
+    ] = useState<DisciplinaGrade | null>(
+        null
+    );
+
+    const [
+        pendingSubject,
+        setPendingSubject,
+    ] = useState<{
+        materia: SelectedSubject;
+        conflitos: SelectedSubject[];
+    } | null>(null);
+
     function trocarGrade() {
         setGradeAtual((prev) => {
             if (prev === 1) return 2;
@@ -80,7 +117,11 @@ export function GradeProvider({
         setGrades((prev) => ({
             ...prev,
             [gradeAtual]: [
-                ...prev[gradeAtual],
+                ...prev[gradeAtual].filter(
+                    (item) =>
+                        item.disciplina.disciplinaCursoId !==
+                        materia.disciplina.disciplinaCursoId
+                ),
                 materia,
             ],
         }));
@@ -98,6 +139,28 @@ export function GradeProvider({
                     item.disciplina
                         .disciplinaCursoId !==
                     disciplinaCursoId
+            ),
+        }));
+    }
+
+    function removerMaterias(
+        materias: SelectedSubject[]
+    ) {
+
+        setGrades((prev) => ({
+            ...prev,
+
+            [gradeAtual]: prev[
+                gradeAtual
+            ].filter(
+                (item) =>
+                    !materias.some(
+                        (m) =>
+                            m.disciplina
+                                .disciplinaCursoId ===
+                            item.disciplina
+                                .disciplinaCursoId
+                    )
             ),
         }));
     }
@@ -120,6 +183,9 @@ export function GradeProvider({
                 gradeCompleta,
                 setGradeCompleta,
 
+                previewDisciplina,
+                setPreviewDisciplina,
+
                 trocarGrade,
 
                 adicionarMateria,
@@ -128,6 +194,11 @@ export function GradeProvider({
                 creditosAtuais,
 
                 gradeSelecionada,
+
+                pendingSubject,
+                setPendingSubject,
+
+                removerMaterias
             }}
         >
             {children}

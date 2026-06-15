@@ -1,38 +1,61 @@
+@use '../../../../styles/variables.scss' as *;
+
 .grid {
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    80px repeat(6, 1fr);
+    grid-template-columns:
+        60px repeat(6, 1fr);
 
-  grid-template-rows:
-    60px repeat(17, 60px);
+    grid-template-rows:
+        60px repeat(17, 60px);
 
-  gap: 10px;
+    gap: 8px;
 
-  background: #1A3D352B;
+    background: #1A3D352B;
 
-  border-radius: 32px;
+    border-radius: 32px;
 
-  padding: 20px;
+    padding: 20px;
+    height: fit-content;
 }
 
 .gradeButton {
-  grid-column: 1;
-  grid-row: 1;
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00FFCC0D;
+    border: 1px solid #00FFCC33;
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 17px;
+    text-align: center;
+    color: $primary-color;
 }
 
 .dayHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: $primary-color;
+    font-size: 12px;
+
 }
 
 .timeCell {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14.39px;
+    line-height: 9.83px;
+    color: #B2B2B2;
 }
 
 .cell {
-  border: 1px solid #00FFCC0D;
-  border-radius: 5px;
+    border: 1px solid #00FFCC0D;
+    border-radius: 5px;
 }

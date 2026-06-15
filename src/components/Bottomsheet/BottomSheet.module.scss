@@ -1,0 +1,55 @@
+// ─── BottomSheet.module.scss ──────────────────────────────────────────────────
+
+$bg-sheet:  #0D1F1E;
+$teal-dim:  rgba(14, 210, 200, 0.12);
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.overlayVisible {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background: $bg-sheet;
+  border-radius: 16px 16px 0 0;
+  border: 1px solid $teal-dim;
+  border-bottom: none;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  &.sheetOpen {
+    transform: translateY(0);
+  }
+}
+
+.dragHandle {
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+  padding-bottom: 4px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}

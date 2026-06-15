@@ -1,0 +1,106 @@
+// ─── ShareSheet.module.scss ───────────────────────────────────────────────────
+
+$teal:           #0ED2C8;
+$border:         rgba(255, 255, 255, 0.08);
+$text-primary:   #F1F5F9;
+$text-muted:     #6B7280;
+$radius-md:      12px;
+$radius-sm:      8px;
+$transition:     0.2s ease;
+
+.body {
+  padding: 16px 24px 32px;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: $text-primary;
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  color: $text-muted;
+  border-radius: 6px;
+  transition: color $transition;
+
+  &:hover      { color: $text-primary; }
+  &:focus-visible { outline: 2px solid $teal; outline-offset: 2px; }
+}
+
+// ── Items ─────────────────────────────────────────────────────────────────────
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: $radius-md;
+  border: 1px solid $border;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 10px;
+  transition: border-color $transition, background $transition;
+
+  &:last-child { margin-bottom: 0; }
+
+  &:hover {
+    border-color: rgba(14, 210, 200, 0.25);
+    background: rgba(14, 210, 200, 0.05);
+  }
+
+  &:focus-visible { outline: 2px solid $teal; outline-offset: 2px; }
+}
+
+.itemIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-sm;
+  background: rgba(14, 210, 200, 0.08);
+  border: 1px solid rgba(14, 210, 200, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $teal;
+}
+
+.itemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemTitle {
+  font-weight: 600;
+  color: $text-primary;
+  font-size: 15px;
+}
+
+.itemDesc {
+  color: $text-muted;
+  font-size: 13px;
+}
+
+.itemArrow {
+  color: $teal;
+  flex-shrink: 0;
+}

@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { useGrade } from "../../../../context/GradeContext";
+import { useMemo, useState } from "react";
 
 import styles from "./SubjectsSidebar.module.scss";
 
@@ -14,8 +13,14 @@ type Props = {
 export function SubjectsSidebar({
     grade,
 }: Props) {
+    const [search, setSearch] = useState("");
 
-    const { creditosAtuais } = useGrade();
+    const [tab, setTab] = useState<
+        "TODAS" |
+        "OBRIGATORIAS" |
+        "ELETIVAS" |
+        "FUTURAS"
+    >("TODAS");
 
     const disciplinas = useMemo(() => {
         return grade.semestres.flatMap(
@@ -23,17 +28,37 @@ export function SubjectsSidebar({
         );
     }, [grade]);
 
+    const disciplinasFiltradas = disciplinas.filter(
+        (disciplina) => {
+
+            const matchSearch =
+                disciplina.nome
+                    .toLowerCase()
+                    .includes(search.toLowerCase())
+                ||
+                disciplina.codigo
+                    .toLowerCase()
+                    .includes(search.toLowerCase());
+
+            if (!matchSearch) return false;
+
+            if (tab === "OBRIGATORIAS") {
+                return disciplina.tipo === "OBRIGATORIA";
+            }
+
+            if (tab === "ELETIVAS") {
+                return disciplina.tipo === "ELETIVA";
+            }
+
+            return true;
+        }
+    );
+
     return (
         <div className={styles.container}>
 
-            <h3>Matérias</h3>
-
-            <span>
-                Créditos atuais: {creditosAtuais}
-            </span>
-
             <div className={styles.list}>
-                {disciplinas.map((disciplina) => (
+                {disciplinasFiltradas.map((disciplina) => (
                     <SubjectCard
                         key={
                             disciplina.disciplinaCursoId
