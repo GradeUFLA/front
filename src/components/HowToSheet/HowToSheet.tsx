@@ -1,6 +1,3 @@
-// ─── HowToSheet.tsx ───────────────────────────────────────────────────────────
-// Bottom sheet "Como montar a sua grade".
-
 import { X, LayoutGrid, ExternalLink } from "lucide-react";
 import styles from "./HowToSheet.module.scss";
 import { BottomSheet } from "../Bottomsheet/Bottomsheet";
@@ -14,9 +11,8 @@ interface HowToSheetProps {
 export function HowToSheet({ open, onClose }: HowToSheetProps) {
   return (
     <BottomSheet open={open} onClose={onClose} ariaLabel="Como montar a sua grade">
-      <div className={styles.body}>
+      <div className={styles.container}>
 
-        {/* Eyebrow + close */}
         <div className={styles.header}>
           <div className={styles.eyebrow}>
             <LayoutGrid size={14} />
@@ -27,18 +23,16 @@ export function HowToSheet({ open, onClose }: HowToSheetProps) {
           </button>
         </div>
 
-        {/* Intro */}
         <p className={styles.intro}>
           Bem-vindo(a) ao{" "}
           <strong>
-            grade<span className={styles.accent}>UFLA</span>
+            Grade<span className={styles.accent}>UFLA</span>
           </strong>
           ! Organizar o seu horário para o próximo semestre nunca foi tão
           simples. Esta ferramenta foi criada para que você visualize suas aulas
           de forma prática e evite conflitos de horário antes mesmo da matrícula.
         </p>
 
-        {/* Steps */}
         <p className={styles.sectionLabel}>Passo a passo</p>
 
         <ul className={styles.stepList}>
@@ -56,7 +50,6 @@ export function HowToSheet({ open, onClose }: HowToSheetProps) {
           ))}
         </ul>
 
-        {/* Warning */}
         <div className={styles.warning}>
           <strong>Atenção:</strong> Esta é uma ferramenta de simulação e{" "}
           <strong>não tem vínculo com a UFLA</strong>. Use-a para planejar
@@ -67,20 +60,23 @@ export function HowToSheet({ open, onClose }: HowToSheetProps) {
           decidir sua grade horária.
         </div>
 
-        {/* Developers */}
         <div className={styles.devSection}>
-          <p className={styles.devLabel}>Desenvolvido por</p>
+          <div className={styles.devLabelWrapper}>
+  <span className={styles.line} />
+  <p className={styles.devLabel}>Desenvolvido por</p>
+  <span className={styles.line} />
+</div>
           {DEVELOPERS.map((dev) => (
             <a
               key={dev.name}
-              href={dev.linkedinUrl}
+              href={dev.contatoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.devRow}
             >
               <span className={styles.devName}>{dev.name}</span>
               <span className={styles.devLink}>
-                LinkedIn&nbsp;
+                {dev.type === "github" ? "GitHub" : "LinkedIn"}&nbsp;
                 <ExternalLink size={12} style={{ display: "inline", verticalAlign: "middle" }} />
               </span>
             </a>

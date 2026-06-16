@@ -1,19 +1,43 @@
-// ─── HowToSheet.module.scss ───────────────────────────────────────────────────
+@use "../../styles/variables.scss" as *;
 
-$teal:           #0ED2C8;
-$bg-header:      #060F0E;
-$border:         rgba(255, 255, 255, 0.08);
-$text-primary:   #F1F5F9;
+$bg-header: #060F0E;
+$border: rgba(255, 255, 255, 0.08);
+$text-primary: #F1F5F9;
 $text-secondary: #94A3B8;
-$text-muted:     #6B7280;
-$radius-sm:      8px;
-$transition:     0.2s ease;
+$text-muted: #6B7280;
+$radius-sm: 8px;
+$transition: 0.2s ease;
 
-.body {
+.container {
   padding: 16px 24px 32px;
+
+  height: 100%;
+  max-height: 80vh;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 210, 200, 0.6) transparent;
 }
 
-// ── Header row ────────────────────────────────────────────────────────────────
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: rgba(14, 210, 200, 0.35);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 210, 200, 0.6);
+}
 
 .header {
   display: flex;
@@ -30,7 +54,7 @@ $transition:     0.2s ease;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: $teal;
+  color: $primary-color;
 }
 
 .closeBtn {
@@ -44,11 +68,15 @@ $transition:     0.2s ease;
   border-radius: 6px;
   transition: color $transition;
 
-  &:hover      { color: $text-primary; }
-  &:focus-visible { outline: 2px solid $teal; outline-offset: 2px; }
-}
+  &:hover {
+    color: $text-primary;
+  }
 
-// ── Intro ─────────────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
 
 .intro {
   color: $text-secondary;
@@ -56,12 +84,14 @@ $transition:     0.2s ease;
   line-height: 1.65;
   margin-bottom: 24px;
 
-  strong { color: $text-primary; }
+  strong {
+    color: $text-primary;
+  }
 }
 
-.accent { color: $teal; }
-
-// ── Section label ─────────────────────────────────────────────────────────────
+.accent {
+  color: $primary-color;
+}
 
 .sectionLabel {
   font-size: 11px;
@@ -71,8 +101,6 @@ $transition:     0.2s ease;
   color: $text-muted;
   margin-bottom: 16px;
 }
-
-// ── Steps ─────────────────────────────────────────────────────────────────────
 
 .stepList {
   display: flex;
@@ -93,7 +121,7 @@ $transition:     0.2s ease;
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: $teal;
+  background: $primary-color;
   color: $bg-header;
   font-weight: 700;
   font-size: 13px;
@@ -115,10 +143,10 @@ $transition:     0.2s ease;
   line-height: 1.6;
   margin: 0;
 
-  strong { color: $text-primary; }
+  strong {
+    color: $text-primary;
+  }
 }
-
-// ── Warning ───────────────────────────────────────────────────────────────────
 
 .warning {
   margin-top: 28px;
@@ -130,13 +158,37 @@ $transition:     0.2s ease;
   color: $text-secondary;
   line-height: 1.6;
 
-  strong { color: $text-primary; }
+  strong {
+    color: $text-primary;
+  }
 }
-
-// ── Developers ────────────────────────────────────────────────────────────────
 
 .devSection {
   margin-top: 28px;
+}
+
+.devLabelWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.devLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-muted;
+  white-space: nowrap;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: center;
 }
 
 .devLabel {
@@ -166,5 +218,13 @@ $transition:     0.2s ease;
   }
 }
 
-.devName { color: $text-primary; font-weight: 600; font-size: 14px; }
-.devLink { color: $teal; font-size: 13px; }
+.devName {
+  color: $text-primary;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.devLink {
+  color: $primary-color;
+  font-size: 13px;
+}

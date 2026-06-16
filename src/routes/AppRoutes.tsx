@@ -1,13 +1,5 @@
-import {
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
-
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { Layout } from "../components/layout/Layout";
 
@@ -15,20 +7,21 @@ import { Hero } from "../pages/Hero/Hero";
 import { StepperInfos } from "../pages/StepperInfos/StepperInfos";
 import { MateriasConcluidas } from "../pages/MateriasConcluidas/MateriasConcluidas";
 import { Grade } from "../pages/Grade/Grade";
+import { GoogleOAuthCallback } from "../pages/oauth/GoogleOAuthCallback";
 
 export const AppRoutes = () => {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
-
-      <Routes
-        location={location}
-        key={location.pathname}
-      >
+      <Routes location={location} key={location.pathname}>
+        {/* 🔐 OAuth route FORA do Layout */}
+        <Route
+          path="/oauth/google"
+          element={<GoogleOAuthCallback />}
+        />
 
         <Route element={<Layout />}>
-
           <Route
             path="/"
             element={
@@ -64,16 +57,13 @@ export const AppRoutes = () => {
               </PageTransition>
             }
           />
-
         </Route>
-
       </Routes>
-
     </AnimatePresence>
   );
 };
 
-const PageTransition = ({ children }) => {
+const PageTransition = ({ children }: any) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

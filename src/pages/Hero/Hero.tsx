@@ -1,9 +1,11 @@
 import { ArrowDown, Dot } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Hero.module.scss";
+import { useMatricula } from "../../hooks/useMatricula";
 
 export const Hero = () => {
   const navigate = useNavigate();
+  const { matricula } = useMatricula();
 
   return (
     <div className={styles.container}>
@@ -11,7 +13,9 @@ export const Hero = () => {
         <span className={styles.dot}>
           <Dot />
         </span>
-        <p>MATRÌCULAS 2026/2 ABERTAS</p>
+        <p>
+          MATRÍCULAS {matricula?.periodo ?? "----"} ABERTAS
+        </p>
       </div>
 
       <div className={styles.description}>

@@ -1,15 +1,13 @@
-// ─── gradeHeader.mocks.ts ─────────────────────────────────────────────────────
-// Dados estáticos dos bottom sheets. Substitua pela sua store/API quando necessário.
-
 export interface HowToStep {
   n: number;
   title: string;
-  body: string; // aceita HTML simples via dangerouslySetInnerHTML
+  body: string;
 }
 
 export interface Developer {
   name: string;
-  linkedinUrl: string;
+  contatoUrl: string;
+  type: "linkedin" | "github";
 }
 
 export const HOW_TO_STEPS: HowToStep[] = [
@@ -41,11 +39,11 @@ export const HOW_TO_STEPS: HowToStep[] = [
 ];
 
 export const DEVELOPERS: Developer[] = [
-  { name: "Ana Clara Rocha", linkedinUrl: "https://linkedin.com" },
-  { name: "Bárbara Fonseca",  linkedinUrl: "https://linkedin.com" },
-  { name: "Fernando Scarabeli",  linkedinUrl: "https://linkedin.com" },
-  { name: "Jhennifer Campos",  linkedinUrl: "https://linkedin.com" },
-  { name: "José Vitor Machado",  linkedinUrl: "https://linkedin.com" },
+  { name: "Ana Clara Rocha", contatoUrl: "https://www.linkedin.com/in/anaclararochagomes", type: "linkedin" },
+  { name: "Bárbara Fonseca", contatoUrl: "https://linkedin.com", type: "linkedin" },
+  { name: "Fernando Scarabeli", contatoUrl: "https://github.com/FernandoScarabeli", type: "github" },
+  { name: "Jhennifer Campos", contatoUrl: "https://www.linkedin.com/in/jhennifer-campos-aa404627a/", type: "linkedin" },
+  { name: "José Vitor Machado", contatoUrl: "https://www.linkedin.com/in/jos%C3%A9vitor-machado-0051a22b2/", type: "linkedin" },
 ];
 
 export const GOOGLE_AGENDA_SUBJECT_COUNT = 4;

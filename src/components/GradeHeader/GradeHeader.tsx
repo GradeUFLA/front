@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Info, LayoutGrid, Share2 } from "lucide-react";
+import { Dot, Info, Share2 } from "lucide-react";
 import LogoGrade from "../../assets/logo-grade.svg";
 
 import { HowToSheet } from "../HowToSheet/HowToSheet";
@@ -8,6 +8,7 @@ import { GoogleAgendaSheet } from "../GoogleAgendaSheet/GoogleAgendaSheet";
 
 import styles from "./GradeHeader.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useMatricula } from "../../hooks/useMatricula";
 
 type ActiveSheet = "howTo" | "share" | "googleAgenda" | null;
 
@@ -17,6 +18,7 @@ export function GradeHeader() {
   const open = (sheet: ActiveSheet) => setActiveSheet(sheet);
   const close = () => setActiveSheet(null);
   const navigate = useNavigate();
+  const { matricula, loading } = useMatricula();
 
   return (
     <>
@@ -35,6 +37,22 @@ export function GradeHeader() {
           </h4>
         </div>
 
+        <div className={styles.headerTexts}>
+          <h1 className={styles.titleGrade}>Minha Grade de Horários</h1>
+
+          <div className={styles.description}>
+            <div className={styles.matriculaBadge}>
+              <span className={styles.dot}>
+                <Dot />
+              </span>
+              <p>
+                semestre {matricula?.periodo ?? "----"}
+              </p>
+            </div>
+            <p className={styles.subtitle}>Organize suas disciplinas e otimize seu tempo acadêmico</p>
+          </div>
+        </div>
+
         <nav className={styles.actions}>
           <button
             className={styles.iconBtn}
@@ -48,9 +66,9 @@ export function GradeHeader() {
           <button
             className={styles.iconBtn}
             onClick={() => {
-  console.log("clicou share");
-  open("share");
-}}
+              console.log("clicou share");
+              open("share");
+            }}
             aria-label="Compartilhar"
             title="Compartilhar"
           >

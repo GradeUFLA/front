@@ -3,7 +3,8 @@ import styles from "./SubjectsSidebar.module.scss";
 import type { GradeResponse } from "../../../../types/grade";
 import { SubjectCard } from "./components/SubjectCard/SubjectCard";
 import { useGrade } from "../../../../context/GradeContext";
-import { Funnel, Search, SlidersHorizontal } from "lucide-react";
+import { Funnel, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   grade: GradeResponse;
@@ -16,6 +17,7 @@ export function SubjectsSidebar({
   semestreAtual,
   materiasPendentesIds,
 }: Props) {
+  const navigate = useNavigate();
   const { gradeSelecionada } = useGrade();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -25,7 +27,9 @@ export function SubjectsSidebar({
     "TODAS" | "OBRIGATORIAS" | "ELETIVAS" | "FUTURAS"
   >("TODAS");
 
-  const [tipoFiltro, setTipoFiltro] = useState("");
+  const [modalidadeFiltro, setModalidadeFiltro] = useState<
+    "" | "ANP" | "PRESENCIAL"
+  >("");
   const [diaFiltro, setDiaFiltro] = useState("");
   const [horaInicioFiltro, setHoraInicioFiltro] = useState("");
   const [horaFimFiltro, setHoraFimFiltro] = useState("");
@@ -40,7 +44,7 @@ export function SubjectsSidebar({
   }, [grade]);
 
   function limparFiltros() {
-    setTipoFiltro("");
+    setModalidadeFiltro("");
     setDiaFiltro("");
     setHoraInicioFiltro("");
     setHoraFimFiltro("");
@@ -61,8 +65,20 @@ export function SubjectsSidebar({
 
     if (!matchSearch) return false;
 
-    if (tipoFiltro && disciplina.tipo !== tipoFiltro) {
-      return false;
+    if (modalidadeFiltro === "ANP") {
+      const possuiANP = disciplina.turmas.some((turma) =>
+        turma.horarios.some((h) => h.dia === "ANP"),
+      );
+
+      if (!possuiANP) return false;
+    }
+
+    if (modalidadeFiltro === "PRESENCIAL") {
+      const ehPresencial = disciplina.turmas.every((turma) =>
+        turma.horarios.every((h) => h.dia !== "ANP"),
+      );
+
+      if (!ehPresencial) return false;
     }
 
     if (diaFiltro) {
@@ -144,6 +160,16 @@ export function SubjectsSidebar({
     );
   }, [disciplinasFiltradas]);
 
+  const creditosAtuais = useMemo(() => {
+    return gradeSelecionada.reduce((total, item) => {
+      return total + item.disciplina.creditos;
+    }, 0);
+  }, [gradeSelecionada]);
+
+  const LIMITE_CREDITOS = 32;
+
+  const limiteExcedido = creditosAtuais >= LIMITE_CREDITOS;
+
   return (
     <div className={styles.container}>
       <div className={styles.topBar}>
@@ -168,15 +194,15 @@ export function SubjectsSidebar({
       {showFilters && (
         <div className={styles.filterCard}>
           <div className={styles.filterGroup}>
-            <label>Tipo</label>
+            <label>Modalidade</label>
 
             <select
-              value={tipoFiltro}
-              onChange={(e) => setTipoFiltro(e.target.value)}
+              value={modalidadeFiltro}
+              onChange={(e) => setModalidadeFiltro(e.target.value as any)}
             >
               <option value="">Todas</option>
-              <option value="OBRIGATORIA">Obrigatórias</option>
-              <option value="ELETIVA">Eletivas</option>
+              <option value="ANP">ANP</option>
+              <option value="PRESENCIAL">Presencial</option>
             </select>
           </div>
 
@@ -240,6 +266,17 @@ export function SubjectsSidebar({
         </div>
       )}
 
+      <div
+        className={`${styles.creditCard} ${limiteExcedido
+          ? styles.limiteExcedido
+          : styles.limiteOk
+          }`}
+      >
+        <p className={styles.creditos}>Total de Créditos </p>
+
+        <p className={styles.qntdCreditos}>{creditosAtuais}</p>
+      </div>
+
       <div className={styles.tabs}>
         <button
           className={tab === "TODAS" ? styles.activeTab : styles.disabledTab}
@@ -275,26 +312,33 @@ export function SubjectsSidebar({
       <div className={styles.list}>
         {tab === "FUTURAS"
           ? Object.entries(disciplinasAgrupadas).map(
-              ([semestre, disciplinas]) => (
-                <div key={semestre} className={styles.futureGroup}>
-                  <h3 className={styles.futureTitle}>{semestre}º período</h3>
+            ([semestre, disciplinas]) => (
+              <div key={semestre} className={styles.futureGroup}>
+                <h3 className={styles.futureTitle}>{semestre}º período</h3>
 
-                  {disciplinas.map((disciplina) => (
-                    <SubjectCard
-                      key={disciplina.disciplinaCursoId}
-                      disciplina={disciplina}
-                    />
-                  ))}
-                </div>
-              ),
-            )
+                {disciplinas.map((disciplina) => (
+                  <SubjectCard
+                    key={disciplina.disciplinaCursoId}
+                    disciplina={disciplina}
+                  />
+                ))}
+              </div>
+            ),
+          )
           : disciplinasFiltradas.map((disciplina) => (
-              <SubjectCard
-                key={disciplina.disciplinaCursoId}
-                disciplina={disciplina}
-              />
-            ))}
+            <SubjectCard
+              key={disciplina.disciplinaCursoId}
+              disciplina={disciplina}
+            />
+          ))}
       </div>
+
+      <button
+        className={styles.voltarBtn}
+        onClick={() => navigate(-1)}
+      >
+        Voltar
+      </button>
     </div>
   );
 }

@@ -42,9 +42,9 @@ export function MateriasConcluidas() {
       prev.map((d) =>
         d.id === id
           ? {
-              ...d,
-              concluida: !d.concluida,
-            }
+            ...d,
+            concluida: !d.concluida,
+          }
           : d,
       ),
     );
@@ -140,7 +140,7 @@ export function MateriasConcluidas() {
 
         <button
           className={styles.BtnVoltar}
-          onClick={() => navigate("/stepper")}
+          onClick={() => navigate(-1)}
         >
           Voltar
         </button>
