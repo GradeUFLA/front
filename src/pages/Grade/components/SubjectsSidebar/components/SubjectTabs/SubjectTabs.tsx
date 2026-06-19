@@ -4,7 +4,6 @@ type Props = {
 };
 
 export function SubjectTabs({
-    tab,
     setTab,
 }: Props) {
 

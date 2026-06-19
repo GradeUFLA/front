@@ -18,7 +18,7 @@ export function GradeHeader() {
   const open = (sheet: ActiveSheet) => setActiveSheet(sheet);
   const close = () => setActiveSheet(null);
   const navigate = useNavigate();
-  const { matricula, loading } = useMatricula();
+  const { matricula } = useMatricula();
 
   return (
     <>

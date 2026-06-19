@@ -17,7 +17,7 @@ import { calculateBlockGrid } from "../../utils/calculateBlockGrid";
 
 export function Grade() {
   const location = useLocation();
-  const { grade, semestreAtual, materiasConcluidasIds, materiasPendentesIds } =
+  const { grade, semestreAtual, materiasPendentesIds } =
     location.state;
 
   const [activeDisciplina, setActiveDisciplina] = useState<any>(null);

@@ -69,6 +69,14 @@ export function WeeklyGrid() {
               selected.turma.horarios.map((horario) => {
                 if (horario.dia === "ANP") return null;
 
+                const grid = calculateBlockGrid(
+                  horario.dia,
+                  horario.horaInicio,
+                  horario.horaFim
+                );
+
+                if (!grid) return null;
+
                 return (
                   <SubjectBlock
                     key={`${selected.turma.turmaId}-${horario.id}`}
@@ -77,11 +85,7 @@ export function WeeklyGrid() {
                     professor={selected.turma.professor}
                     turmaCodigo={selected.turma.codigo}
                     sala={horario.sala}
-                    {...calculateBlockGrid(
-                      horario.dia,
-                      horario.horaInicio,
-                      horario.horaFim
-                    )}
+                    {...grid}
                   />
                 );
               })
@@ -137,6 +141,14 @@ export function WeeklyGrid() {
               turma.horarios.map((horario) => {
                 if (horario.dia === "ANP") return null;
 
+                const grid = calculateBlockGrid(
+                  horario.dia,
+                  horario.horaInicio,
+                  horario.horaFim
+                );
+
+                if (!grid) return null;
+
                 return (
                   <SubjectBlock
                     key={`preview-${turma.turmaId}-${horario.id}`}
@@ -151,11 +163,7 @@ export function WeeklyGrid() {
                       horario,
                       gradeSelecionada
                     )}
-                    {...calculateBlockGrid(
-                      horario.dia,
-                      horario.horaInicio,
-                      horario.horaFim
-                    )}
+                    {...grid}
                   />
                 );
               })
